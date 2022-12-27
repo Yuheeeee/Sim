@@ -9,7 +9,7 @@ namespace Simkezelo
         public string nev;
         public string telefon;
         public string email;
-
+        
 
         
 

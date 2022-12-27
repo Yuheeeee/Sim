@@ -52,16 +52,18 @@ namespace Simkezelo
 
         }
 
-        private void aktivalas()
+        public void aktivalas()
         {
-            KartyaSim ks;
+            KartyaSim ks=new KartyaSim();
             Console.WriteLine("Add meg a kártyád sorszámát!");
             int sorszam = int.Parse(Console.ReadLine());
             int i = 0;
+            //ez csak egy megjegyzés
 
            
                 while (i < 3 && ks.a == false)
                 {
+                    
                     Console.WriteLine("Add meg a PIN kódot a kártya aktiválásához!");
                     int[] pbe = new int[4];
                     for (int j = 0; j < pbe.Length; j++)
@@ -71,7 +73,7 @@ namespace Simkezelo
                     }
                     if (pbe == ks.pin)
                     {
-                        a = true;
+                        ks.a = true;
                         Console.WriteLine("Pin jelszó aktiválása sikeres");
                     }
 
