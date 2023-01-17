@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Text;
 
 namespace Simkezelo
@@ -9,9 +10,33 @@ namespace Simkezelo
     {
         public bool a = false;
         public int sorszam;
-        public int[] pin;
+        public string pin;
+       
+
         public int egyenleg;
         public Kapcsolatok[] kapcsolatok = new Kapcsolatok[20];
+        public int[] kartyak=new int[3];
+
+        public void pinkezelo()
+        {
+            
+            
+        }
+
+        public void adatfeltoltes(int adat1,int adat2,int adat3)
+        {
+            int i=0;
+            kartyak[i] = new int();
+            kartyak[0] = adat1;
+            kartyak[1] = adat2;
+            kartyak[2] = adat3;
+
+
+
+
+
+        }
+
         public int Sorszam()
         {
             int sorszam1;
@@ -25,12 +50,13 @@ namespace Simkezelo
         {
             int egyenleg1;
             Console.WriteLine("Mennyivel töltsük fel az egyenleged?");
+            //egyenleg1 = int.Parse(Console.ReadLine());
             egyenleg1 = int.Parse(Console.ReadLine());
             egyenleg += egyenleg1;
             return egyenleg1;
         }
 
-        public int[] PIN()
+        public void PIN()
         {
             int[] pinKod = new int[4];
             Random rnd = new Random();
@@ -40,8 +66,14 @@ namespace Simkezelo
                 
             }
 
-            pin = pinKod;
-            return pinKod;
+            
+            foreach (var i in pinKod)
+            {
+                pin += i;
+            }
+            
+            
+            
     }
         
 

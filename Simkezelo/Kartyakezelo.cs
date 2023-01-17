@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Simkezelo
 {
     public class Kartyakezelo
     {
-        private List<KartyaSim> kartyalista;
-        public Kartyakezelo()
-        {
-            kartyalista = new List<KartyaSim>();
-        }
+        
+
+        public List<int[]> simlista=new List<int[]>();
+        
 
         public void menu ()
         {
@@ -43,43 +43,58 @@ namespace Simkezelo
         {
             Console.WriteLine("Itt lesz a kártyahozzáadás");
             KartyaSim ks = new KartyaSim();
+            
             ks.Sorszam();
             ks.Egyenleg();
             ks.PIN();
-            Console.WriteLine("Az ön sorszáma: " + ks.sorszam);
-            Console.WriteLine("Az ön egyenlege: " + ks.egyenleg);
-            Console.WriteLine("Az ön PIN kódja: " + ks.pin[0]+ ks.pin[1]+ ks.pin[2]+ ks.pin[3]);
+            ks.adatfeltoltes(ks.sorszam, ks.egyenleg, Convert.ToInt32(ks.pin));
+            simlista.Add(ks.kartyak);
+            Console.WriteLine("Az Ön sorszáma: " + ks.kartyak[0] +"\n"+"Az Ön egyenlege: " + ks.kartyak[1] +"\n"+"Az Ön PIN kódja: " + ks.kartyak[2]);
 
+            /*int[] abc = simlista[0];
+            for (int i = 0; i < abc.Length; i++)
+            {
+                Console.WriteLine(abc[i]);
+            }*/
+            System.Console.WriteLine(simlista[0].GetLength(0));
         }
 
         public void aktivalas()
         {
             KartyaSim ks=new KartyaSim();
-            Console.WriteLine("Add meg a kártyád sorszámát!");
-            int sorszam = int.Parse(Console.ReadLine());
-            int i = 0;
-            //ez csak egy megjegyzés
 
-           
-                while (i < 3 && ks.a == false)
+            int i = 0;
+            while (i<3 || ks.a==false)
+
+            {
+                
+                Console.WriteLine("Add meg a kártyád sorszámát!");
+                int sorszam = int.Parse(Console.ReadLine());
+                Console.WriteLine("Add meg a kártyád PIN kódját!");
+                int bepin = int.Parse(Console.ReadLine());
+                for (int j = 0; j < simlista[j].Length; j++)
                 {
-                    
-                    Console.WriteLine("Add meg a PIN kódot a kártya aktiválásához!");
-                    int[] pbe = new int[4];
-                    for (int j = 0; j < pbe.Length; j++)
-                    {
-                        int rekord = int.Parse(Console.ReadLine());
-                        pbe[j] = rekord;
-                    }
-                    if (pbe == ks.pin)
+                    if ((sorszam == simlista[j][0]) && (bepin == simlista[j][2]))
                     {
                         ks.a = true;
-                        Console.WriteLine("Pin jelszó aktiválása sikeres");
+                        Console.WriteLine("PIN aktiválás sikeres \nÜgyi vagy! :)");
+                    }
+
+                    else
+                    {
+                        
+                        
+                        Console.WriteLine("Az általad megadott valamely érték nem egyezik");
+
                     }
 
 
+                
                 }
-            
+
+                i++;
+
+            }
 
         }
     }
